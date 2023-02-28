@@ -38,16 +38,16 @@ public class PaymentByCreditPage {
         card.setValue(numberCard);
     }
     public void setMonth() {
-        month.setValue(DataHelper.generateRandomMonth());
+        month.setValue(String.valueOf(DataHelper.generateRandomMonth()));
     }
     public void setYear() {
-        year.setValue(DataHelper.generateRandomYear());
+        year.setValue(String.valueOf(DataHelper.generateRandomYear()));
     }
     public void setName() {
         name.setValue(DataHelper.generateRandomName());
     }
     public void setCvc() {
-        cvc.setValue(DataHelper.generateRandomCVC());
+        cvc.setValue(String.valueOf(DataHelper.generateRandomCVC()));
     }
 
     public void pushButton() {transferButton.click();}

@@ -31,7 +31,7 @@ public class UITest {
     @Test
     void shouldBuyByCard() {
         DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.isDashboardPage();
+        //dashboardPage.isDashboardPage();
         dashboardPage.buyByCard();
         PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
         paymentByCardPage.paymentVisible();

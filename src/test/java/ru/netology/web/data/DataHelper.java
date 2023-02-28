@@ -25,11 +25,11 @@ public class DataHelper {
     public static String getSecondCard() {
         return new String("4444 4444 4444 4442");
     }
-    public static String generateRandomMonth() {
+    public static int generateRandomMonth() {
         return faker.number().numberBetween(01, 12);
     }
 
-    public static String generateRandomYear() {
+    public static int generateRandomYear() {
         return faker.number().numberBetween(23, 33);
     }
 
@@ -37,20 +37,9 @@ public class DataHelper {
         return faker.name().lastName() + " " + faker.name().firstName();
     }
 
-    public static String generateRandomCVC() {
+    public static int generateRandomCVC() {
         return faker.number().numberBetween(001, 999);
     }
 
-    public static AuthInfo generateValidUserWithFirstCard() {
-        return new AuthInfo(getFirstCard(), generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
-    }
-
-    public static AuthInfo generateValidUserWithSecondCard() {
-        return new AuthInfo(getSecondCard(), generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
-    }
-
-    public static AuthInfo generateInvalidUser1() {
-        return new AuthInfo("4444 4444 4444 444", generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
-    }
 
 }
