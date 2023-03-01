@@ -1,26 +1,17 @@
 package ru.netology.web.test;
 
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
-import ru.netology.web.page.*;
+import ru.netology.web.page.DashboardPage;
+import ru.netology.web.page.PaymentByCardPage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.codeborne.selenide.Configuration;
-
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
 
 public class UITest {
-    private String amount = "10000";
-    private String amountZero = "0";
-    private String amountOne = "1";
-    private String amountOverLimit = "10001";
-
-    private String amountPanny = "0.1";
-
 
     @BeforeEach
     public void setup() {
@@ -30,18 +21,22 @@ public class UITest {
 
     @Test
     void shouldBuyByCard() {
+
         DashboardPage dashboardPage = new DashboardPage();
-        //dashboardPage.isDashboardPage();
+        dashboardPage.isDashboardPage();
         dashboardPage.buyByCard();
+        //DataHelper dataHelper = new DataHelper();
+        //DataHelper.generateRandomUserWithFirstCard();
         PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
         paymentByCardPage.paymentVisible();
-        paymentByCardPage.setFromCardField(DataHelper.getFirstCard());
-        paymentByCardPage.setMonth();
-        paymentByCardPage.setYear();
-        paymentByCardPage.setName();
-        paymentByCardPage.setCvc();
+        paymentByCardPage.setFirstCard(DataHelper.getFirstCard());
+        paymentByCardPage.setMonth("03");
+        paymentByCardPage.setYear("23");
+        paymentByCardPage.setName(DataHelper.generateRandomName());
+        paymentByCardPage.setCvc("999");
         paymentByCardPage.pushButton();
-        paymentByCardPage.getBuy();
+        //paymentByCardPage.setFirstCard(String.valueOf(DataHelper.generateRandomUserWithFirstCard()));
+        paymentByCardPage.setSuccess();
 
 
     }

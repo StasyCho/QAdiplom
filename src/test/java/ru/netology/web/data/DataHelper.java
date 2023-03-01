@@ -9,24 +9,28 @@ public class DataHelper {
     private static Faker faker = new Faker(new Locale("en"));
 
     private DataHelper() {
-    }
+        }
+
     @Value
     public static class AuthInfo {
-        String card;
         int month;
         int year;
         String name;
         int cvc;
     }
+
     public static String getFirstCard() {
-        return new String("4444 4444 4444 4441");
+        return new String ("4444 4444 4444 4441");
+    }
+   public static String getSecondCard() {
+    return new String ( "4444 4444 4444 4442");
+   }
+    public static String getRandomCard() {
+        return faker.finance().creditCard();
     }
 
-    public static String getSecondCard() {
-        return new String("4444 4444 4444 4442");
-    }
     public static int generateRandomMonth() {
-        return faker.number().numberBetween(01, 12);
+        return faker.number().randomDigitNotZero();
     }
 
     public static int generateRandomYear() {
@@ -41,5 +45,10 @@ public class DataHelper {
         return faker.number().numberBetween(001, 999);
     }
 
-
+    public static AuthInfo generateRandomUserWithFirstCard() {
+        return new AuthInfo(generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
+    }
+    public static AuthInfo generateRandomUserWithSecondCard() {
+        return new AuthInfo(generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
+    }
 }
