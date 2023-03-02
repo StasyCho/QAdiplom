@@ -13,6 +13,7 @@ public class DataHelper {
 
     @Value
     public static class AuthInfo {
+        String card;
         int month;
         int year;
         String name;
@@ -30,11 +31,11 @@ public class DataHelper {
     }
 
     public static int generateRandomMonth() {
-        return faker.number().randomDigitNotZero();
+        return faker.number().numberBetween(10,12);
     }
 
     public static int generateRandomYear() {
-        return faker.number().numberBetween(23, 33);
+        return faker.number().numberBetween(23, 28);
     }
 
     public static String generateRandomName() {
@@ -42,13 +43,16 @@ public class DataHelper {
     }
 
     public static int generateRandomCVC() {
-        return faker.number().numberBetween(001, 999);
+        return faker.number().numberBetween(100, 999);
     }
 
     public static AuthInfo generateRandomUserWithFirstCard() {
-        return new AuthInfo(generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
+        return new AuthInfo(getFirstCard(), generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
     }
     public static AuthInfo generateRandomUserWithSecondCard() {
-        return new AuthInfo(generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
+        return new AuthInfo(getSecondCard(), generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
+    }
+    public static AuthInfo generateRandomUserWithRandomCard() {
+        return new AuthInfo(getRandomCard(), generateRandomMonth(), generateRandomYear(), generateRandomName(), generateRandomCVC());
     }
 }

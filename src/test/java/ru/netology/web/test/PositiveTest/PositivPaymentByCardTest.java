@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
 import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.PaymentByCardPage;
+import ru.netology.web.page.PaymentByCreditPage;
 
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
 
-public class UITest {
+public class PositivPaymentByCardTest {
 
     @BeforeEach
     public void setup() {
@@ -29,17 +29,15 @@ public class UITest {
         //DataHelper.generateRandomUserWithFirstCard();
         PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
         paymentByCardPage.paymentVisible();
-        paymentByCardPage.setFirstCard(DataHelper.getFirstCard());
-        paymentByCardPage.setMonth("03");
-        paymentByCardPage.setYear("23");
-        paymentByCardPage.setName(DataHelper.generateRandomName());
-        paymentByCardPage.setCvc("999");
-        paymentByCardPage.pushButton();
+        //paymentByCardPage.setFirstCard(DataHelper.getFirstCard());
+        //paymentByCardPage.setMonth(String.valueOf(DataHelper.generateRandomMonth()));
+        //paymentByCardPage.setYear(String.valueOf(DataHelper.generateRandomYear()));
+        //paymentByCardPage.setName(DataHelper.generateRandomName());
+        //paymentByCardPage.setCvc(String.valueOf(DataHelper.generateRandomCVC()));
+        paymentByCardPage.validUser(DataHelper.generateRandomUserWithFirstCard());
         //paymentByCardPage.setFirstCard(String.valueOf(DataHelper.generateRandomUserWithFirstCard()));
+        paymentByCardPage.pushButton();
         paymentByCardPage.setSuccess();
-
-
     }
-
 
 }
