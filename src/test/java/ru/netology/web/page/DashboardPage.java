@@ -1,26 +1,23 @@
 package ru.netology.web.page;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.web.data.DataHelper;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Condition.appear;
 
 public class DashboardPage {
 
-    private SelenideElement buy = $x("//*[@class='button button_size_m button_theme_alfa-on-white']");
-    private SelenideElement credit = $x("//*[@class='button button_view_extra button_size_m button_theme_alfa-on-white']");
+    private SelenideElement buyButton = Selenide.$x("//span[text()='Купить']");
+    private SelenideElement creditButton = Selenide.$x("//span[text()='Купить в кредит']");
 
     public void isDashboardPage() {
-        buy.shouldBe(appear);
-        credit.shouldBe(appear);
+        buyButton.shouldBe(appear);
+        creditButton.shouldBe(appear);
     }
     public void buyByCard() {
-        buy.click();
+        buyButton.click();
     }
-    public void buyByCredit() {
-        credit.click();
+    public void buyByCreditCard() {
+        creditButton.click();
     }
 }
