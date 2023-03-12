@@ -90,6 +90,7 @@ public class DataHelper {
         return new AuthInfo(FirstCard, getCurrentMonth(), String.valueOf(validYear), generateRandomName(), cvc);
     }
 
+
     public static AuthInfo generateUserWithInvalidMonth() {
         var currentMonth = Integer.parseInt(getCurrentMonth());
         currentMonth = currentMonth - 1;

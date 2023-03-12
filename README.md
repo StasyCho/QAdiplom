@@ -20,12 +20,22 @@
 
 5) Запустить приложение командой в консоли:
 
-- java -jar aqa-shop.jar
+- java -jar artifacts/aqa-shop.jar
 
-6) Запустить симулятор:
+6) Запустить авто-тесты командой в консоли:
+- для MySQL:
 
-- cd gate-simulator
-- npm start
+./gradlew test "-Ddb.url=jdbc:mysql://localhost:3306/app" "-Ddb.username=app" "-Ddb.password=pass"
+
+- для PostgreSQL:
+
+./gradlew test "-Ddb.url=jdbc:postgresql://localhost:5432/app" "-Ddb.username=app" "-Ddb.password=pass"
+
+8) Создание Allure отчёта
+
+- ./gradlew allureReport - формирование отчёта
+
+- ./gradlew allureServe - отображение отчёта в браузере
 
 ### После выполнения всех тестов:
 - остановить работу приложения командой в консоли: Ctrl+C

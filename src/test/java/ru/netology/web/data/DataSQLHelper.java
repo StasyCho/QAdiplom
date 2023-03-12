@@ -1,4 +1,5 @@
 package ru.netology.web.data;
+
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -6,6 +7,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 public class DataSQLHelper {
     private static QueryRunner runner = new QueryRunner();
     private static String url = System.getProperty("db.url");
@@ -16,8 +18,11 @@ public class DataSQLHelper {
 
     public DataSQLHelper() {
     }
+
     @SneakyThrows
-    private static Connection getConn() {return DriverManager.getConnection(url, userName, password);}
+    private static Connection getConn() {
+        return DriverManager.getConnection(url, userName, password);
+    }
 
     public static DataHelper.CreditCardData getCreditCardData() {
         var cardDataSQL = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1";
