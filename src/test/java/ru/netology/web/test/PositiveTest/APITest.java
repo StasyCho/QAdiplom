@@ -21,18 +21,18 @@ public class APITest {
     }
 
     @Test
-    void shouldSuccessTransactionWithFirstCardVia() {
+    void shouldSuccessTransactionWithFirstCard() {
         var cardInfo = DataHelper.generateRandomUserWithFirstCard();
         DataAPIHelper.createPayment(cardInfo);
     }
 
     @Test
-
     void shouldSuccessTransactionWithFirstCreditCard() {
         var cardInfo = DataHelper.generateRandomUserWithFirstCard();
         DataAPIHelper.createCredit(cardInfo);
 
     }
+
     @Test
     void shouldSuccessTransactionWithSecondCard() {
         var cardInfo = DataHelper.generateRandomUserWithSecondCard();
@@ -43,6 +43,20 @@ public class APITest {
     @Test
     void shouldSuccessTransactionWithSecondCreditCard() {
         var cardInfo = DataHelper.generateRandomUserWithSecondCard();
+        DataAPIHelper.createCredit(cardInfo);
+
+    }
+
+    @Test
+    void shouldSuccessTransactionWithRandomCard() {
+        var cardInfo = DataHelper.generateRandomUserWithRandomCard();
+        DataAPIHelper.createPayment(cardInfo);
+
+    }
+
+    @Test
+    void shouldSuccessTransactionWithRandomCreditCard() {
+        var cardInfo = DataHelper.generateRandomUserWithRandomCard();
         DataAPIHelper.createCredit(cardInfo);
 
     }

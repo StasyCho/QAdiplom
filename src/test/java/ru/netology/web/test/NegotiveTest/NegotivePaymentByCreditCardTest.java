@@ -23,6 +23,7 @@ public class NegotivePaymentByCreditCardTest {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:8080");
     }
+
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
@@ -32,8 +33,9 @@ public class NegotivePaymentByCreditCardTest {
     void tearDown() {
         closeWindow();
     }
+
     @Test
-    void shouldShowWarning() {
+    void shouldShowWarningUnderEmptyFields() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -43,8 +45,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateEmptyForm());
         paymentByCreditPage.checkWarningUnderAll();
     }
+
     @Test
-    void shouldShowWarningUnderCard1() {
+    void shouldShowWarningUnderCardWithNumberOfSimbolsLess16() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -54,8 +57,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedCard("444444444"));
         paymentByCreditPage.checkWarningUnderCard("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderCard2() {
+    void shouldShowWarningUnderCardWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -67,7 +71,7 @@ public class NegotivePaymentByCreditCardTest {
     }
 
     @Test
-    void shouldShowWarningUnderMont1() {
+    void shouldShowWarningUnderMont1Simbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -77,8 +81,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedMonth("1"));
         paymentByCreditPage.checkWarningUnderMonth("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderMonth2() {
+    void shouldShowWarningUnderMonthWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -88,8 +93,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedMonth("J-о"));
         paymentByCreditPage.checkWarningUnderMonth("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderMonth3() {
+    void shouldShowWarningUnderInvalidMonth() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -99,8 +105,21 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithInvalidMonth());
         paymentByCreditPage.checkWarningUnderMonth("Неверно указан срок действия карты");
     }
+
     @Test
-    void shouldShowWarningUnderYear1() {
+    void shouldShowWarningUnderMonth00() {
+
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCreditCard();
+        PaymentByCreditPage paymentByCreditPage = new PaymentByCreditPage();
+        paymentByCreditPage.paymentVisible();
+        paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedMonth("00"));
+        paymentByCreditPage.checkWarningUnderMonth("Неверный формат");
+    }
+
+    @Test
+    void shouldShowWarningUnderInvalidYear() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -110,8 +129,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithInvalidYear());
         paymentByCreditPage.checkWarningUnderYear("Истёк срок действия карты");
     }
+
     @Test
-    void shouldShowWarningUnderYear2() {
+    void shouldShowWarningUnderYear1Simbol() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -121,8 +141,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedYear("1"));
         paymentByCreditPage.checkWarningUnderYear("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderYear3() {
+    void shouldShowWarningUnderYearWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -132,8 +153,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedYear("J-о"));
         paymentByCreditPage.checkWarningUnderYear("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderName() {
+    void shouldShowWarningUnderNameWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -143,8 +165,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedCardName("566"));
         paymentByCreditPage.checkWarningUnderName("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderCVC1() {
+    void shouldShowWarningUnderCVC1Simbol() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -154,8 +177,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedCvc("5"));
         paymentByCreditPage.checkWarningUnderCvc("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderCVC2() {
+    void shouldShowWarningUnderCVC2Simbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -165,8 +189,9 @@ public class NegotivePaymentByCreditCardTest {
         paymentByCreditPage.validUser(DataHelper.generateUserWithParametrizedCvc("55"));
         paymentByCreditPage.checkWarningUnderCvc("Неверный формат");
     }
+
     @Test
-    void shouldShowWarningUnderCVC3() {
+    void shouldShowWarningUnderCVCWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();

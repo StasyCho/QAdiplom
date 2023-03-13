@@ -14,9 +14,11 @@ public class DashboardPage {
         buyButton.shouldBe(appear);
         creditButton.shouldBe(appear);
     }
+
     public void buyByCard() {
         buyButton.click();
     }
+
     public void buyByCreditCard() {
         creditButton.click();
     }

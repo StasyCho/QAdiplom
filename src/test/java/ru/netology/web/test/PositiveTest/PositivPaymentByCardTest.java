@@ -24,6 +24,7 @@ public class PositivPaymentByCardTest {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:8080");
     }
+
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
@@ -33,6 +34,7 @@ public class PositivPaymentByCardTest {
     void tearDown() {
         closeWindow();
     }
+
     @Test
     void shouldBuyByFirstCard() {
 
@@ -45,6 +47,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCardWithBoundaryValuesName1() {
 
@@ -57,6 +60,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCardWithBoundaryValuesName64() {
 
@@ -69,6 +73,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCardWithValidName() {
 
@@ -81,6 +86,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCardWithMaxYear() {
 
@@ -93,6 +99,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCardWithMinYear() {
 
@@ -105,6 +112,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setSuccess();
         paymentByCardPage.errorNotVisible();
     }
+
     @Test
     void shouldNotBuyBySecondCard() {
 
@@ -117,6 +125,7 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setError();
         paymentByCardPage.successNotVisible();
     }
+
     @Test
     void shouldNotBuyByRandomCard() {
 
@@ -129,8 +138,6 @@ public class PositivPaymentByCardTest {
         paymentByCardPage.setError();
         paymentByCardPage.successNotVisible();
     }
-
-
 
 
 }

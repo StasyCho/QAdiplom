@@ -23,6 +23,7 @@ public class PositivPaymentByCreditCardTest {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:8080");
     }
+
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
@@ -45,6 +46,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCreditCardWithBoundaryValuesName1() {
 
@@ -57,6 +59,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCreditCardWithBoundaryValuesName64() {
 
@@ -69,6 +72,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCreditCardWithValidName() {
 
@@ -81,6 +85,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCreditCardWithMaxYear() {
 
@@ -93,6 +98,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldBuyByFirstCreditCardWithMinYear() {
 
@@ -105,6 +111,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.setSuccess();
         paymentByCreditPage.errorNotVisible();
     }
+
     @Test
     void shouldNotBuyBySecondCreditCard() {
 
@@ -118,6 +125,7 @@ public class PositivPaymentByCreditCardTest {
         paymentByCreditPage.successNotVisible();
 
     }
+
     @Test
     void shouldNotBuyByRandomCreditCard() {
 

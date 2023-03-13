@@ -6,8 +6,10 @@ import com.codeborne.selenide.SelenideElement;
 import ru.netology.web.data.DataHelper;
 
 import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+
 public class PaymentByCreditPage {
     private SelenideElement paymentPageByCredit = Selenide.$x("//h3[text()='Кредит по данным карты']");
     private SelenideElement card = Selenide.$x("//span[text()='Номер карты']" +
@@ -34,14 +36,31 @@ public class PaymentByCreditPage {
             "/following-sibling::span[@class='input__sub']");
     private SelenideElement warningCvc = Selenide.$x("//span[text()='CVC/CVV']" +
             "/following-sibling::span[@class='input__sub']");
+
     public void paymentVisible() {
         paymentPageByCredit.shouldBe(Condition.visible);
     }
-    public void pushButton() {transferButton.click();}
-    public void setSuccess() {success.waitUntil(Condition.visible, 10000);}
-    public void successNotVisible() {success.shouldNotBe(Condition.visible,Duration.ofSeconds(10));}
-    public void setError() {error.waitUntil(Condition.visible, 10000);}
-    public void errorNotVisible() {error.shouldNotBe(Condition.visible,Duration.ofSeconds(10));}
+
+    public void pushButton() {
+        transferButton.click();
+    }
+
+    public void setSuccess() {
+        success.waitUntil(Condition.visible, 10000);
+    }
+
+    public void successNotVisible() {
+        success.shouldNotBe(Condition.visible, Duration.ofSeconds(10));
+    }
+
+    public void setError() {
+        error.waitUntil(Condition.visible, 10000);
+    }
+
+    public void errorNotVisible() {
+        error.shouldNotBe(Condition.visible, Duration.ofSeconds(10));
+    }
+
     public DashboardPage validUser(DataHelper.AuthInfo info) {
         card.setValue(info.getCard());
         month.setValue(String.valueOf(info.getMonth()));
@@ -51,6 +70,7 @@ public class PaymentByCreditPage {
         transferButton.click();
         return new DashboardPage();
     }
+
     public void checkWarningUnderCard(String warningText) {
         warningCard.shouldBe(visible);
         warningCard.shouldHave(text(warningText));
@@ -75,6 +95,7 @@ public class PaymentByCreditPage {
         warningCvc.shouldBe(visible);
         warningCvc.shouldHave(text(warningText));
     }
+
     public void checkWarningUnderAll() {
         warningCard.shouldBe(visible);
         warningMonth.shouldBe(visible);
@@ -82,6 +103,7 @@ public class PaymentByCreditPage {
         warningName.shouldBe(visible);
         warningCvc.shouldBe(visible);
     }
+
     public void notCheckWarningUnderAll() {
         warningCard.shouldNotBe(visible);
         warningMonth.shouldNotBe(visible);

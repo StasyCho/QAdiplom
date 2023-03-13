@@ -10,6 +10,9 @@ import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.PaymentByCardPage;
 import ru.netology.web.page.PaymentByCreditPage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,6 +29,7 @@ public class SQLTest {
         Configuration.holdBrowserOpen = true;
         open("http://localhost:8080");
     }
+
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
@@ -61,7 +65,7 @@ public class SQLTest {
     }
 
     @Test
-    void shouldSuccessTransactionWithDeclinedPaymentCardViaAPI() {
+    void shouldSuccessAddWithDeclinedPaymentCard() {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
         dashboardPage.buyByCard();
@@ -73,7 +77,7 @@ public class SQLTest {
     }
 
     @Test
-    void shouldSuccessTransactionWithDeclinedCreditCard() {
+    void shouldSuccessAddWithDeclinedCreditCard() {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
         dashboardPage.buyByCreditCard();
@@ -108,5 +112,64 @@ public class SQLTest {
         assertEquals(cardDataFromCreditTable.getBank_id(), cardDataFromOrderTable.getCredit_id());
     }
 
+    @Test
+    void shouldAddCorrectDateInPaymentTableWithApprovedCard() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCard();
+        PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
+        paymentByCardPage.validUser(DataHelper.generateRandomUserWithFirstCard());
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        var paymentCardData = DataSQLHelper.getPaymentCardData();
+        String dateFromDB = paymentCardData.getCreated();
+        var dateDB = dateFromDB.substring(0, dateFromDB.length() - 10);
+        assertEquals(formatForDateNow.format(dateNow), dateDB);
+    }
+
+    @Test
+    void shouldAddCorrectDateInCreditTableWithApprovedCard() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCreditCard();
+        PaymentByCreditPage paymentByCreditPage = new PaymentByCreditPage();
+        paymentByCreditPage.validUser(DataHelper.generateRandomUserWithFirstCard());
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        var creditCardData = DataSQLHelper.getCreditCardData();
+        String dateFromDB = creditCardData.getCreated();
+        var dateDB = dateFromDB.substring(0, dateFromDB.length() - 10);
+        assertEquals(formatForDateNow.format(dateNow), dateDB);
+    }
+
+    @Test
+    void shouldAddCorrectDateInPaymentTableWithDeclinedCard() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCard();
+        PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
+        paymentByCardPage.validUser(DataHelper.generateRandomUserWithSecondCard());
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        var paymentCardData = DataSQLHelper.getPaymentCardData();
+        String dateFromDB = paymentCardData.getCreated();
+        var dateDB = dateFromDB.substring(0, dateFromDB.length() - 10);
+        assertEquals(formatForDateNow.format(dateNow), dateDB);
+    }
+
+    @Test
+    void shouldAddCorrectDateInCreditTableWithDeclinedCard() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCreditCard();
+        PaymentByCreditPage paymentByCreditPage = new PaymentByCreditPage();
+        paymentByCreditPage.validUser(DataHelper.generateRandomUserWithSecondCard());
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        var creditCardData = DataSQLHelper.getCreditCardData();
+        String dateFromDB = creditCardData.getCreated();
+        var dateDB = dateFromDB.substring(0, dateFromDB.length() - 10);
+        assertEquals(formatForDateNow.format(dateNow), dateDB);
+    }
 
 }

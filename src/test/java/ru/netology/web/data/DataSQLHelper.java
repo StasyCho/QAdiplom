@@ -13,8 +13,6 @@ public class DataSQLHelper {
     private static String url = System.getProperty("db.url");
     private static String userName = System.getProperty("db.username");
     private static String password = System.getProperty("db.password");
-//  private static String url = "jdbc:mysql://localhost:3306/app";
-//  p rivate static String url = "jdbc:postgresql://localhost:5432/app";
 
     public DataSQLHelper() {
     }

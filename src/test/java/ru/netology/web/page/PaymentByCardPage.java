@@ -32,14 +32,31 @@ public class PaymentByCardPage {
             "/following-sibling::span[@class='input__sub']");
     private SelenideElement warningCvc = Selenide.$x("//span[text()='CVC/CVV']" +
             "/following-sibling::span[@class='input__sub']");
+
     public void paymentVisible() {
         paymentPageByCard.shouldBe(visible);
     }
-    public void pushButton() {transferButton.click();}
-    public void setSuccess() {success.shouldBe(visible,Duration.ofSeconds(10));}
-    public void successNotVisible() {success.shouldNotBe(Condition.visible, Duration.ofSeconds(10));}
-    public void setError() {error.waitUntil(visible, 10000);}
-    public void errorNotVisible() {error.shouldNotBe(Condition.visible,Duration.ofSeconds(10));}
+
+    public void pushButton() {
+        transferButton.click();
+    }
+
+    public void setSuccess() {
+        success.shouldBe(visible, Duration.ofSeconds(10));
+    }
+
+    public void successNotVisible() {
+        success.shouldNotBe(Condition.visible, Duration.ofSeconds(10));
+    }
+
+    public void setError() {
+        error.waitUntil(visible, 10000);
+    }
+
+    public void errorNotVisible() {
+        error.shouldNotBe(Condition.visible, Duration.ofSeconds(10));
+    }
+
     public DashboardPage validUser(DataHelper.AuthInfo info) {
         card.setValue(info.getCard());
         month.setValue(info.getMonth());
@@ -49,6 +66,7 @@ public class PaymentByCardPage {
         transferButton.click();
         return new DashboardPage();
     }
+
     public void checkWarningUnderCard(String warningText) {
         warningCard.shouldBe(visible);
         warningCard.shouldHave(text(warningText));

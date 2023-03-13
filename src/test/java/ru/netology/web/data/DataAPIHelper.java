@@ -1,10 +1,12 @@
 package ru.netology.web.data;
+
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
+
 public class DataAPIHelper {
     private static RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")

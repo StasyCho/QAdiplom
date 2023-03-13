@@ -33,7 +33,7 @@ public class NegotivePaymentByCardTest {
         closeWindow();
     }
     @Test
-    void shouldShowWarning() {
+    void shouldShowWarningUnderEmptyFields() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -44,7 +44,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderAll();
     }
     @Test
-    void shouldShowWarningUnderCard1() {
+    void shouldShowWarningUnderCardWithNumberOfSimbolsLess16() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -55,7 +55,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderCard("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderCard2() {
+    void shouldShowWarningUnderCardWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -66,7 +66,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderCard("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderMonth1() {
+    void shouldShowWarningUnderMonth1Simbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -77,7 +77,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderMonth("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderMonth2() {
+    void shouldShowWarningUnderMonthWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -88,7 +88,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderMonth("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderMonth3() {
+    void shouldShowWarningUnderInvalidMonth() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -98,9 +98,20 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.validUser(DataHelper.generateUserWithInvalidMonth());
         paymentByCardPage.checkWarningUnderMonth("Неверно указан срок действия карты");
     }
+    @Test
+    void shouldShowWarningUnderMonth00() {
+
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.isDashboardPage();
+        dashboardPage.buyByCard();
+        PaymentByCardPage paymentByCardPage = new PaymentByCardPage();
+        paymentByCardPage.paymentVisible();
+        paymentByCardPage.validUser(DataHelper.generateUserWithParametrizedMonth("00"));
+        paymentByCardPage.checkWarningUnderMonth("Неверный формат");
+    }
 
     @Test
-    void shouldShowWarningUnderYear1() {
+    void shouldShowWarningUnderInvalidYear() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -111,7 +122,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderYear("Истёк срок действия карты");
     }
     @Test
-    void shouldShowWarningUnderYear2() {
+    void shouldShowWarningUnderYear1() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -122,7 +133,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderYear("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderYear3() {
+    void shouldShowWarningUnderYearWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -133,7 +144,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderYear("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderName() {
+    void shouldShowWarningUnderNameWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -144,7 +155,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderName("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderCVC1() {
+    void shouldShowWarningUnderCVC1Simbol() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -155,7 +166,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderCvc("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderCVC2() {
+    void shouldShowWarningUnderCVC2Simbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -166,7 +177,7 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.checkWarningUnderCvc("Неверный формат");
     }
     @Test
-    void shouldShowWarningUnderCVC3() {
+    void shouldShowWarningUnderCVCWithInvalidSimbols() {
 
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.isDashboardPage();
@@ -176,4 +187,5 @@ public class NegotivePaymentByCardTest {
         paymentByCardPage.validUser(DataHelper.generateUserWithParametrizedCvc("O-щ"));
         paymentByCardPage.checkWarningUnderCvc("Неверный формат");
     }
+
 }
