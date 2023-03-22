@@ -16,11 +16,10 @@
 3) Склонировать репозиторий командой в консоли: git clone git@github.com:StasyCho/QAdiplom.git
 
 4) Запустить контейнеры Docker командой в консоли:
-- docker-compose up
+  docker-compose up
 
-5) Запустить приложение командой в консоли:
-
-- java -jar artifacts/aqa-shop.jar
+6) Запустить приложение командой в консоли:
+  java -jar artifacts/aqa-shop.jar
 
 6) Запустить авто-тесты командой в консоли:
 - для MySQL:
